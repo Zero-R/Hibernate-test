@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - ssh_test@localhost" uuid="36d7902f-571d-4d76-ba71-d1d13ab83ba5">
+    <database-info product="MySQL" version="5.6.19-enterprise-commercial-advanced" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="ssh_test"/>
+    <table name="activities" schema="" catalog="ssh_test" type="TABLE">
+      <column name="activity_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="batch" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="beginDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="cost" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="period" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="property" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="standard" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="activity_id"/>
+      <exported-key name="FK_34slp61du8k8c9xukyb9289yo" table="doing" schema="" catalog="ssh_test" columns="activity_id"/>
+    </table>
+    <table name="doing" schema="" catalog="ssh_test" type="TABLE">
+      <column name="todayData" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="isTodayFinished" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="isValid" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="totalData" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="activity_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="todayData"/>
+      <foreign-key name="FK_b3rkm1mt7fn5e8f7fvvvo2o85" columns="user_id" ref-table="users" ref-schema="" ref-catalog="ssh_test" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_34slp61du8k8c9xukyb9289yo" columns="activity_id" ref-table="activities" ref-schema="" ref-catalog="ssh_test" ref-columns="activity_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_34slp61du8k8c9xukyb9289yo" unique="false" columns="activity_id"/>
+      <index name="FK_b3rkm1mt7fn5e8f7fvvvo2o85" unique="false" columns="user_id"/>
+    </table>
+    <table name="friends" schema="" catalog="ssh_test" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="friend_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="user_id,friend_id"/>
+      <foreign-key name="FK_e69mr7x1xgad9dmcehrtdco87" columns="user_id" ref-table="users" ref-schema="" ref-catalog="ssh_test" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_idv0wqw940sm3ccr3y3mm4o92" columns="friend_id" ref-table="users" ref-schema="" ref-catalog="ssh_test" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_idv0wqw940sm3ccr3y3mm4o92" unique="true" columns="friend_id"/>
+      <index name="FK_e69mr7x1xgad9dmcehrtdco87" unique="false" columns="user_id"/>
+      <index name="FK_idv0wqw940sm3ccr3y3mm4o92" unique="false" columns="friend_id"/>
+    </table>
+    <table name="hibernate_unique_key" schema="" catalog="ssh_test" type="TABLE">
+      <column name="next_hi" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+    </table>
+    <table name="pre_friends" schema="" catalog="ssh_test" type="TABLE">
+      <column name="requested_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="request_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="requested_id,request_id"/>
+      <foreign-key name="FK_39sy8u7458irclmi6bc6anv3e" columns="requested_id" ref-table="users" ref-schema="" ref-catalog="ssh_test" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_f0lsrujhgjio001ia3715qnro" columns="request_id" ref-table="users" ref-schema="" ref-catalog="ssh_test" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_f0lsrujhgjio001ia3715qnro" unique="true" columns="request_id"/>
+      <index name="FK_39sy8u7458irclmi6bc6anv3e" unique="false" columns="requested_id"/>
+      <index name="FK_f0lsrujhgjio001ia3715qnro" unique="false" columns="request_id"/>
+    </table>
+    <table name="schools" schema="" catalog="ssh_test" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SchoolName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="list_order" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID,list_order"/>
+      <foreign-key name="FK_1006sccww9575w6uf6sp6x1dx" columns="ID" ref-table="students" ref-schema="" ref-catalog="ssh_test" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_1006sccww9575w6uf6sp6x1dx" unique="false" columns="ID"/>
+    </table>
+    <table name="students" schema="" catalog="ssh_test" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_1006sccww9575w6uf6sp6x1dx" table="schools" schema="" catalog="ssh_test" columns="ID"/>
+    </table>
+    <table name="users" schema="" catalog="ssh_test" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="IMEI" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="points" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tel" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="wealth" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <exported-key name="FK_b3rkm1mt7fn5e8f7fvvvo2o85" table="doing" schema="" catalog="ssh_test" columns="user_id"/>
+      <exported-key name="FK_e69mr7x1xgad9dmcehrtdco87" table="friends" schema="" catalog="ssh_test" columns="user_id"/>
+      <exported-key name="FK_idv0wqw940sm3ccr3y3mm4o92" table="friends" schema="" catalog="ssh_test" columns="friend_id"/>
+      <exported-key name="FK_39sy8u7458irclmi6bc6anv3e" table="pre_friends" schema="" catalog="ssh_test" columns="requested_id"/>
+      <exported-key name="FK_f0lsrujhgjio001ia3715qnro" table="pre_friends" schema="" catalog="ssh_test" columns="request_id"/>
+      <index name="UK_cpv9c1o4xjfsipji7as7j01wa" unique="true" columns="IMEI"/>
+      <index name="UK_nekwtc70sk6c2dofve0axwnhb" unique="true" columns="tel"/>
+    </table>
+  </data-source>
+</component>
